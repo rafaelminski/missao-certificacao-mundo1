@@ -5,6 +5,44 @@ from tkinter.ttk import *
 import sqlite3
 import os
 
+
+conexao = _sqlite3.connect('tecnicos.db')
+
+c = conexao.cursor()
+
+c.execute(''' CREATE TABLE tecnicos (
+    nome text,
+    sobrenome text,
+    email text,
+    telefone text
+    )
+''')
+conexao.commit()
+
+conexao.close()
+
+def cadastrar_tecnicos():
+
+
+    conexao = _sqlite3.connect('tecnicos.db')
+
+    c = conexao.cursor()
+
+    c.execute(" INSERT INTO tecnicos VALUES (:nome, :sobrenome, :email, :telefone)",
+              {
+                    'nome':entry_nome.get(),
+                    'sobrenome':entry_sobrenome.get(),
+                    'email':entry_email.get(),
+                    'telefone':entry_telefone.get()
+              }
+              )
+    conexao.commit()
+
+    conexao.close()
+
+def exporta_tecnicos():
+    pass
+
 def mensagem_alerta(a, b):
     messagebox.showinfo(title=a, message=b)
 
