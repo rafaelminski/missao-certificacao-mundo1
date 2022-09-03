@@ -2,8 +2,23 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import scrolledtext
 from tkinter.ttk import *
-import sqlite3
+import _sqlite3
 import os
+
+conexao = _sqlite3.connect('tecnicos.db')
+
+c = conexao.cursor()
+
+c.execute(''' CREATE TABLE tecnicos (
+    nome text,
+    sobrenome text,
+    email text,
+    telefone text
+    )
+''')
+conexao.commit()
+
+conexao.close()
 
 def mensagem_alerta(a, b):
     messagebox.showinfo(title=a, message=b)
