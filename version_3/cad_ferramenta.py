@@ -4,6 +4,45 @@
 from tkinter import *
 from PIL import Image, ImageTk
 
+#Banco de dado para cadastrar ferramentas:
+
+# conexao = sqlite3.connect('cad_ferramentas.db')
+# c = conexao.cursor()
+# c.execute('''CREATE TABLE ferramentas (
+#       ID text,
+#       Descrição text,
+#       Fabricante text,
+#       Voltagem text,
+#       Part_number text, 
+#       Tamanho text, 
+#       Unidade_de_medida text,
+#       Tipo_de_ferramenta text, 
+#       Material text, 
+#       Tempo_máximo_de_reserva text 
+#       )
+# ''')
+# conexao.commit()
+# conexao.close()
+
+def cadastrar_ferramentas:
+
+    conexao = sqlite3.connect('cad_ferramentas.db')
+    c = conexao.cursor()
+    c.execute("INSERT INTO cad_ferramentas VALUES (:ID, :Descrição, :Fabricante,:Voltagem, :Part_number, :Tamanho, :Unidade_de_medida, :Tipo_de_ferramenta,:Material, :Tempo_máximo_de_reserva)",
+         {
+                  'ID':entry_ID.get(),
+                  'Descrição':desc_ferramenta.get(),
+                  'Fabricante':fabricante.get(),
+                  'Voltagem':voltagem.get(),
+                  'Part_number':part_number.get(),
+                  'Tamanho':tamanho.get(),
+                  'Unidade_de_medida':uni_med.get(),
+                  'Tipo_de_ferramenta':tipo_fer.get(),
+                  'Material':mat_fer.get(),
+                  'Tempo_máximo_de_reserva':temp_max_fer.get()
+          }
+          )
+
 class FerramentaBD:
     def __init__(self, win):
         #self.objBD = crud.AppBD()
